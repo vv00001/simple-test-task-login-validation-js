@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Регистрация</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Регистрация</h2>
+      <div class="input_line">
+        <label class="label_input">
+          <span class="input_text">Ваше имя</span>
+          <input
+            type="text"
+            name="first_name"
+            id="first_name"
+            class="input_field" />
+        </label>
+        <p class="error-text" id="first_name_error">нет ошибок</p>
+      </div>
+      <div class="input_line">
+        <label class="label_input">
+          <span class="input_text">Ваша фамилия</span>
+          <input
+            type="text"
+            name="second_name"
+            id="second_name"
+            class="input_field" />
+        </label>
+        <p class="error-text" id="second_name_error">нет ошибок</p>
+      </div>
+      <div class="input_line">
+        <label class="label_input">
+          <span class="input_text">Email</span>
+          <input type="text" name="email" id="email" class="input_field" />
+        </label>
+        <p class="error-text" id="email_error">нет ошибок</p>
+      </div>
+      <div class="input_line">
+        <label class="label_input">
+          <span class="input_text">Пароль</span>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="input_field" />
+        </label>
+        <p class="error-text" id="password_error">нет ошибок</p>
+      </div>
+      <div class="input_line">
+        <label class="label_input">
+          <span class="input_text">Подтвердите пароль</span>
+          <input
+            type="password"
+            name="password_repeate"
+            id="password_repeate"
+            class="input_field" />
+        </label>
+        <p class="error-text" id="password_repeate_error">нет ошибок</p>
+      </div>
+      <div class="input_line">
+        <label class="label_input">
+          <span class="input_text">Дата рождения</span>
+          <input type="date" name="data" id="data" class="input_field" />
+        </label>
+        <p class="error-text" id="data_error">нет ошибок</p>
+      </div>
+      <div class="button_line">
+        <button type="button" class="btn" id="btn">Регистрация</button>
+      </div>
+    </div>
+  </body>
+</html>
