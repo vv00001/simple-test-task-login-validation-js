@@ -1,16 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('btn').addEventListener('click', submit)
+  revolver()
 })
-
+const fields = [
+  'first_name',
+  'second_name',
+  'email',
+  'password',
+  'password_repeate',
+  'data',
+]
+function revolver() {
+  Object.entries(fields).forEach(element => {
+    document.getElementById(element[1]).addEventListener('keyup', event => {
+      takeValue(element[1])
+    })
+  })
+}
 function submit() {
-  const q = takeValue('first_name')
-  const w = takeValue('second_name')
-  const e = takeValue('email')
-  const r = takeValue('password')
-  const t = takeValue('password_repeate')
-  const y = takeValue('data')
-
-  if (q && w && e && r && t && y) {
+  let done = true
+  Object.entries(fields).forEach(element => {
+    const validate = takeValue(element[1])
+    done = done && validate
+  })
+  if (done) {
     if (
       document.getElementById('password').value ==
       document.getElementById('password_repeate').value
@@ -87,10 +100,10 @@ function validation(str, rule) {
       checkDone = 'хотя бы одну заглавную букву'
     } else if (!str.match(/[a-z]+/g)) {
       checkDone = 'хотя бы одну строчную букву'
-    } else if (str.length < 8) {
-      checkDone = 'от 8 до 15 символов'
     } else if (str.match(/^[a-zA-ZА-Яа-я0-9-]{0,}$/g)) {
       checkDone = 'специальный символ'
+    } else if (str.length < 8) {
+      checkDone = 'от 8 до 15 символов'
     } else if (str.length >15) {
       checkDone = 'от 8 до 15 символов'
     }
