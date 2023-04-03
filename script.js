@@ -1,41 +1,52 @@
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('btn').addEventListener('click', submit)
-  revolver()
+  Object.entries(fields).forEach(element => {
+    document.getElementById(element[1]).addEventListener('keyup', event => {
+      takeValue(element[1])
+    })
+    takeValue(element[1])
+  })
+  document
+    .getElementById('password_repeate')
+    .addEventListener('keyup', check_password)
 })
 const fields = [
   'first_name',
   'second_name',
   'email',
+  'data',
   'password',
   'password_repeate',
-  'data',
 ]
-function revolver() {
+function check() {
+  let answer = true
   Object.entries(fields).forEach(element => {
-    document.getElementById(element[1]).addEventListener('keyup', event => {
-      takeValue(element[1])
-    })
+    const takeElement = document.getElementById(element[1] + '_error')
+    const takeColor = window
+      .getComputedStyle(takeElement, null)
+      .getPropertyValue('color')
+    if (takeColor.indexOf('4') > 0) answer = false
   })
+  return answer
 }
-function submit() {
-  let done = true
-  Object.entries(fields).forEach(element => {
-    const validate = takeValue(element[1])
-    done = done && validate
-  })
-  if (done) {
-    if (
-      document.getElementById('password').value ==
-      document.getElementById('password_repeate').value
-    ) {
-      document.getElementById('password_repeate_error').style.color = '#e1e1e1'
-      document.getElementById('btn').textContent = 'Успешная регистрация'
-    } else {
-      document.getElementById('password_repeate_error').textContent =
-        'пароли не совпадают'
-      document.getElementById('password_repeate_error').style.color = '#f80000'
+function check_password() {
+  const partPassword = document
+    .getElementById('password')
+    .value.substring(password_repeate.length)
+  if (partPassword == document.getElementById('password_repeate').value) {
+    document.getElementById('password_repeate_error').style.color = '#e1e1e1'
+    if (check()) {
+      document.getElementById('btn').removeAttribute('disabled')
     }
+  } else {
+    document.getElementById('password_repeate_error').textContent =
+      'пароли не совпадают'
+    document.getElementById('password_repeate_error').style.color = '#f80000'
   }
+}
+
+function submit() {
+  document.getElementById('btn').textContent = 'Успешная регистрация'
 }
 
 function takeValue(str) {
@@ -50,7 +61,9 @@ function takeValue(str) {
     error_mess.textContent = 'Нет ошибок'
     error_mess.style.color = '#e1e1e1'
   }
-  return !check_value
+  if (check()) {
+    document.getElementById('btn').removeAttribute('disabled')
+  }
 }
 
 function validation(str, rule) {
@@ -104,7 +117,7 @@ function validation(str, rule) {
       checkDone = 'специальный символ'
     } else if (str.length < 8) {
       checkDone = 'от 8 до 15 символов'
-    } else if (str.length >15) {
+    } else if (str.length > 15) {
       checkDone = 'от 8 до 15 символов'
     }
   }
